@@ -7,7 +7,7 @@ const PORT = 3001;
 app.use(cors());
 app.use(express.json());
 
-app.post("/calcular-precio-de-alquiler", (req, res) => {
+app.post("/calculate-rental-price", (req, res) => {
   const { days, daily_rate, discount, tax_rate } = req.body;
 
   if (
@@ -16,7 +16,7 @@ app.post("/calcular-precio-de-alquiler", (req, res) => {
     discount === undefined ||
     tax_rate === undefined
   ) {
-    return res.status(400).json({ error: "Todos los campos son obligatorios" });
+    return res.status(400).json({ error: "All inputs is required" });
   }
 
   const subtotal = days * daily_rate;
@@ -29,6 +29,29 @@ app.post("/calcular-precio-de-alquiler", (req, res) => {
     discount_applied,
     tax_amount,
     total_price,
+  });
+});
+
+app.post("/extend-rental", (req, res) => {
+  const { original_end_time, new_end_time, daily_rate } = req.body;
+
+  if (!original_end_time || !new_end_time || daily_rate === undefined) {
+    return res.status(400).json({ error: "All inputs is required" });
+  }
+
+  const newTime = new Date(original_end_time);
+  const newEndTime = new Date(new_end_time);
+  const differenceMs = newEndTime - newTime;
+  const differenceHours = differenceMs / (1000 * 60 * 60);
+
+  const extension_hours = differenceHours;
+  const hourly_rate = daily_rate / 24;
+  const extension_fee = hourly_rate * extension_hours;
+
+  res.json({
+    extension_hours,
+    hourly_rate,
+    extension_fee,
   });
 });
 
