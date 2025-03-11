@@ -1,0 +1,26 @@
+.app_global {
+  background: #1e1e1e;
+  display: grid;
+  place-content: center;
+  height: 100vh;
+  form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+    gap: 10px;
+    background: white;
+    border-radius: 8px;
+    text-align: center;
+    h1 {
+      color: #1e1e1e;
+    }
+    input {
+      width: 200px;
+      height: 48px;
+      padding: 5px 10px;
+      border-radius: 8px;
+      width: 100%;
+    }
+  }
+}
