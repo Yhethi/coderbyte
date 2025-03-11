@@ -50,7 +50,7 @@ const Question1 = () => {
       console.error("Data Error", error);
     }
   };
-
+ 
   return (
     <>
       <Header />
