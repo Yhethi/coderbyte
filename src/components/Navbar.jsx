@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const Navbar = () => {
   const navigate = useNavigate();
 
-  const questions = Array.from({ length: 7 }, (_, i) => `question${i + 1}`);
+  const questions = Array.from({ length: 3 }, (_, i) => `question${i + 1}`);
 
   return (
     <div className="global_navbar">
